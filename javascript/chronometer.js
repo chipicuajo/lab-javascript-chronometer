@@ -20,6 +20,7 @@ class Chronometer {
         minutes++
       }
     },1000)
+    console.log(minutes)
     return minutes
   }
   getSeconds() {
@@ -30,11 +31,22 @@ class Chronometer {
     if(seconds>=59){
       return seconds-60 
     }
+    console.log(seconds)
     return seconds
     
   }
   twoDigitsNumber() {
-    // ... your code goes here
+    this.intervalId = setInterval(()=>{
+      if(seconds>9){
+        seconds = ("0" + seconds).slice(-2);
+      }
+      if(minutes>9){
+       
+      minutes = ("0" + minutes).slice(-2);
+      }
+
+  }, 1000)
+  
   }
   stopClick() {
     // ... your code goes here
