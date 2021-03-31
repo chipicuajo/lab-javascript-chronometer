@@ -2,6 +2,7 @@ class Chronometer {
   constructor() {
     this.currentTime = 0; 
     this.intervalId = 0; 
+    this.currentTimeMs = 0;
   }
 
   
@@ -11,6 +12,10 @@ class Chronometer {
       this.currentTime++; 
       if (printTime) printTime();
     }, 1000);
+    this.intervalIdMs = setInterval( () => {
+      this.currentTimeMs++; 
+      if (printTime) printTime();
+    }, 10);
   }
 
   
@@ -25,6 +30,14 @@ class Chronometer {
     return currentTimeSec;
   }
 
+  getMilliSeconds() {
+    let currentTimeMs = this.currentTimeMs%1000;     
+      return currentTimeMs;     
+    
+  }
+
+
+  
   
   twoDigitsNumber(num) {
     let twoDigits = ("0" + num).slice(-2); // Example: if num is 2, twoDigits will be "02".
@@ -33,19 +46,27 @@ class Chronometer {
 
   
   stopClick() {
+    
     clearInterval(this.intervalId);
+    clearInterval(this.intervalIdMs);
+    
   }
+  
+   
 
   
   resetClick() {
-    this.currentTime = 0;
-  }
+    this.currentTime = 0
+ }
+ resetClickMs(){
+   this.currentTimeMs = 0;
+ }
 
   
   splitClick() {
     let minutes = this.twoDigitsNumber(this.getMinutes());
     let seconds = this.twoDigitsNumber(this.getSeconds());
-
-    return `${minutes}:${seconds}`;
+    let milliSeconds = this.twoDigitsNumber(this.getMilliSeconds());
+    return `${minutes}:${seconds}:${milliSeconds}`;
   }
 }

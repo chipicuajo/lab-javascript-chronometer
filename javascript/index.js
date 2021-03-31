@@ -16,6 +16,7 @@ let splits = document.getElementById('splits');
 function printTime() {
   this.printMinutes()
   this.printSeconds()
+  this.printMilliseconds()
   
 }
 
@@ -37,7 +38,9 @@ function printSeconds() {
 
 // ==> BONUS
 function printMilliseconds() {
-  // ... your code goes here
+  let mS= chronometer.twoDigitsNumber(chronometer.getMilliSeconds())
+    milUni.innerText = mS[1]
+    milDec.innerText = mS[0]
 }
 
 function printSplit() {
@@ -72,10 +75,14 @@ function setStartBtn() {
 function setResetBtn() {
   btnRight.classList.value = 'btn reset'
   btnRight.innerText = "RESET"
+}
+function resetValues(){
   secUni.innerText = "0"
   secDec.innerText ="0"
   minDec.innerText = "0"
   minUni.innerText = "0"
+  milDec.innerText = "0"
+  milUni.innerText = "0"
 }
 
 // Start/Stop Button
@@ -85,11 +92,10 @@ btnLeft.addEventListener('click', () => {
       chronometer.startClick(this.printTime)
       setStopBtn()
       setSplitBtn()
-
     }else{
       chronometer.stopClick()
-      setStartBtn()
-      setResetBtn()
+      this.setStartBtn()  
+      this.setResetBtn()
       
       }
     }
@@ -98,11 +104,13 @@ btnLeft.addEventListener('click', () => {
 
 // Reset/Split Button
 btnRight.addEventListener('click', () => {
- if(btnRight.classList.value == 'btn reset'){
-    this.clearSplits()
-    chronometer.resetClick()
-    
-  }else{
+ if(btnRight.classList.value !== 'btn reset'){
    this.printSplit()
+   
+}else{
+    
+    this.clearSplits()
+    this.setResetBtn()
+    this.resetValues()
  }
 });
