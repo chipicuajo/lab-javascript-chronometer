@@ -35,16 +35,16 @@ class Chronometer {
     return seconds
     
   }
-  twoDigitsNumber() {
-    let twoDig  = ""
-    for(let i=0; i<=1;i++){
-      if(this.currentTime<9){
-        twoDig = "0" + this.currentTime
-      }else{
-        twoDig = this.currentTime.toString();
-      }
+  twoDigitsNumber(input) {
+    let output = input.toString()
+    if(input <=9){
+      output = "0" + input.toString()
+      return output
+    }else{
+      
+      return output
     }
-    return twoDig
+
   }
   stopClick() {
     clearInterval(this.intervalId)
@@ -55,6 +55,9 @@ class Chronometer {
 
   }
   splitClick() {
-    
+    let mins = this.twoDigitsNumber(this.getMinutes())
+    let secs = this.twoDigitsNumber(this.getSeconds())
+    let output = `${mins}:${secs}`
+    return output
   }
 }
