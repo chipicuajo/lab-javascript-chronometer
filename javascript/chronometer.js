@@ -33,35 +33,25 @@ class Chronometer {
   getMilliSeconds() {
     let currentTimeMs = this.currentTimeMs%1000;     
       return currentTimeMs;     
-    
-  }
+    }
 
-
-  
-  
   twoDigitsNumber(num) {
     let twoDigits = ("0" + num).slice(-2); // Example: if num is 2, twoDigits will be "02".
     return twoDigits
   }
 
-  
   stopClick() {
-    
     clearInterval(this.intervalId);
     clearInterval(this.intervalIdMs);
-    
   }
-  
-   
 
-  
   resetClick() {
     this.currentTime = 0
  }
+
  resetClickMs(){
    this.currentTimeMs = 0;
  }
-
   
   splitClick() {
     let minutes = this.twoDigitsNumber(this.getMinutes());

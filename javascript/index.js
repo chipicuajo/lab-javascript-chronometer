@@ -75,6 +75,8 @@ function setStartBtn() {
 function setResetBtn() {
   btnRight.classList.value = 'btn reset'
   btnRight.innerText = "RESET"
+  chronometer.resetClick()
+  chronometer.resetClickMs()
 }
 function resetValues(){
   secUni.innerText = "0"
@@ -109,7 +111,7 @@ btnRight.addEventListener('click', () => {
    
 }else{
     
-    this.clearSplits()
+  this.clearSplits()
     this.setResetBtn()
     this.resetValues()
  }
